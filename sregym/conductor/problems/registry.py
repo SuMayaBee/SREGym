@@ -7,16 +7,15 @@ from sregym.conductor.problems.ad_service_high_cpu import AdServiceHighCpu
 from sregym.conductor.problems.ad_service_manual_gc import AdServiceManualGc
 from sregym.conductor.problems.admission_webhook_outage import AdmissionWebhookOutage
 from sregym.conductor.problems.admission_webhook_tls_mismatch import AdmissionWebhookTLSMismatch
-from sregym.conductor.problems.mutating_webhook_resource_limits import MutatingWebhookResourceLimits
 from sregym.conductor.problems.assign_non_existent_node import AssignNonExistentNode
 from sregym.conductor.problems.auth_miss_mongodb import MongoDBAuthMissing
 from sregym.conductor.problems.capacity_decrease_rpc_retry_storm import CapacityDecreaseRPCRetryStorm
 from sregym.conductor.problems.cart_service_failure import CartServiceFailure
 from sregym.conductor.problems.configmap_drift import ConfigMapDrift
-from sregym.conductor.problems.dev_shm_exhaustion_hotel_reservation import DevShmExhaustionHotelReservation
 from sregym.conductor.problems.cronjob_sidecar_blocks_completion import (
     CronJobSidecarBlocksCompletionHotelReservation,
 )
+from sregym.conductor.problems.dev_shm_exhaustion_hotel_reservation import DevShmExhaustionHotelReservation
 from sregym.conductor.problems.duplicate_pvc_mounts import DuplicatePVCMounts
 from sregym.conductor.problems.edge_request_filter_cpu_saturation import EdgeRequestFilterCPUSaturation
 from sregym.conductor.problems.env_variable_shadowing import EnvVariableShadowing
@@ -24,6 +23,7 @@ from sregym.conductor.problems.ephemeral_port_range_hotel_reservation import Eph
 from sregym.conductor.problems.expired_tls_hotel_reservation import ExpiredTlsHotelReservation
 from sregym.conductor.problems.failed_readiness_probe import FailedReadinessProbe
 from sregym.conductor.problems.faulty_image_correlated import FaultyImageCorrelated
+from sregym.conductor.problems.finalizer_deadlock_controller import FinalizerDeadlockController
 from sregym.conductor.problems.file_descriptor_exhaustion import FileDescriptorExhaustion
 from sregym.conductor.problems.gc_capacity_degradation import GCCapacityDegradation
 from sregym.conductor.problems.hpa_missing_effective_cpu_request import HPAMissingEffectiveCPURequest
@@ -50,6 +50,7 @@ from sregym.conductor.problems.missing_configmap import MissingConfigMap
 from sregym.conductor.problems.missing_env_variable import MissingEnvVariable
 from sregym.conductor.problems.missing_service import MissingService
 from sregym.conductor.problems.multiple_failures import MultipleIndependentFailures  # noqa: F401
+from sregym.conductor.problems.mutating_webhook_resource_limits import MutatingWebhookResourceLimits
 from sregym.conductor.problems.namespace_memory_limit import NamespaceMemoryLimit
 from sregym.conductor.problems.network_policy_block import NetworkPolicyBlock
 from sregym.conductor.problems.node_conntrack_exhaustion import NodeConntrackExhaustionHotelReservation
@@ -130,6 +131,7 @@ class ProblemRegistry:
             "assign_to_non_existent_node": AssignNonExistentNode,
             "auth_miss_mongodb": MongoDBAuthMissing,
             "configmap_drift_hotel_reservation": lambda: ConfigMapDrift(faulty_service="geo"),
+            "finalizer_deadlock_controller_hotel_reservation": FinalizerDeadlockController,
             "duplicate_pvc_mounts_astronomy_shop": lambda: DuplicatePVCMounts(app_name="astronomy_shop", faulty_service="frontend"),
             "duplicate_pvc_mounts_hotel_reservation": lambda: DuplicatePVCMounts(app_name="hotel_reservation", faulty_service="frontend"),
             "duplicate_pvc_mounts_social_network": lambda: DuplicatePVCMounts(app_name="social_network", faulty_service="jaeger"),
