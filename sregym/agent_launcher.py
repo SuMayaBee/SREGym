@@ -102,6 +102,7 @@ class AgentLauncher:
             "copilot": "clients.copilot.driver",
             "opencode": "clients.opencode.driver",
             "gemini": "clients.geminicli.driver",
+            "opensre": "clients.opensre.driver",
         }
 
         module_path = agent_driver_modules.get(reg.name)

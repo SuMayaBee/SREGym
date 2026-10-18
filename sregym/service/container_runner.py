@@ -242,6 +242,12 @@ class ContainerRunner:
         "AGENT_REASONING_EFFORT",
         "AGENT_API_BASE",
         "AGENT_API_KEY",
+        # OpenSRE provider configuration
+        "LLM_PROVIDER",
+        "LLM_AUTH_METHOD",
+        "CUSTOM_OPENAI_API_KEY",
+        "CUSTOM_OPENAI_BASE_URL",
+        "CUSTOM_OPENAI_MODEL",
         # Config vars
         "API_HOSTNAME",
         "API_PORT",

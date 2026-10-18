@@ -7,6 +7,7 @@ from mini-swe-agent. Its license is in LICENSE-mini-swe-agent in this folder.
 
 from __future__ import annotations
 
+import os
 import re
 
 # Only used in the format error message, which is copied from mini-swe-agent.
@@ -108,7 +109,15 @@ def system_text() -> str:
 
 def instance_text(app_info: dict) -> str:
     """First user message: the task text, the subshell note and the workflow rules."""
-    return build_task_text(app_info).rstrip() + CURL_INSTANCE_NOTE + WORKFLOW_TEXT
+    diagnosis = os.getenv("OPENSRE_DIAGNOSIS_CONTEXT", "").strip()
+    upstream_context = (
+        "\n\n## Upstream OpenSRE diagnosis\n\n"
+        + diagnosis
+        + "\n\nValidate this diagnosis against the live cluster, then apply the root-cause fix."
+        if diagnosis
+        else ""
+    )
+    return build_task_text(app_info).rstrip() + upstream_context + CURL_INSTANCE_NOTE + WORKFLOW_TEXT
 
 
 def accepted_submission(output: str, stage: str) -> bool:

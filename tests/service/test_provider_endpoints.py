@@ -144,6 +144,14 @@ def test_mini_sre_allowlist_is_its_model_endpoint(model, environment, expected_h
     assert {rule.host for rule in rules} == expected_hosts
 
 
+def test_opensre_allowlist_is_derived_from_selected_model():
+    policy = InternetPolicy.from_mode("filtered", agent_name="opensre", model_id="anthropic/claude-sonnet-4-5")
+
+    rules = provider_endpoint_rules(policy, {"ANTHROPIC_API_KEY": "secret"})
+
+    assert rules == (EndpointRule("api.anthropic.com", 443),)
+
+
 def test_unrelated_provider_endpoint_does_not_enter_allowlist():
     policy = InternetPolicy.from_mode("filtered", agent_name="stratus", model_id="anthropic/claude-sonnet-4-6")
 
